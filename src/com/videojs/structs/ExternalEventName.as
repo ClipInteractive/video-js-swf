@@ -14,6 +14,7 @@ package com.videojs.structs{
         public static const ON_BUFFER_FLUSH:String = "emptied";
         public static const ON_PLAYBACK_COMPLETE:String = "ended";
         public static const ON_METADATA:String = "loadedmetadata";
+        public static const ON_METADATA_UPDATE:String = 'metadataupdate';
         public static const ON_DURATION_CHANGE:String = "durationchange";
         public static const ON_CAN_PLAY:String = "canplay";
         public static const ON_CAN_PLAY_THROUGH:String = "canplaythrough";

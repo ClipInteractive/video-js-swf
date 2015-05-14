@@ -632,20 +632,24 @@ package com.videojs.providers{
         }
 
         public function onMetaData(pMetaData:Object):void{
-            if (_onmetadadataFired) {
-              return;
+            _metadata = pMetaData;
+
+             if (_onmetadadataFired) {
+                _model.broadcastEventExternally(ExternalEventName.ON_METADATA_UPDATE, _metadata);
+                return;
             }
 
-            _metadata = pMetaData;
-            if(pMetaData.duration != undefined){
+
+            if (pMetaData.duration != undefined){
                 _isLive = false;
                 _canSeekAhead = true;
                 _model.broadcastEventExternally(ExternalEventName.ON_DURATION_CHANGE, _metadata.duration);
             }
-            else{
+            else {
                 _isLive = true;
                 _canSeekAhead = false;
             }
+
             _model.broadcastEvent(new VideoPlaybackEvent(VideoPlaybackEvent.ON_META_DATA, {metadata:_metadata}));
             _model.broadcastEventExternally(ExternalEventName.ON_METADATA, _metadata);
             _model.broadcastEventExternally(ExternalEventName.ON_CAN_PLAY);
